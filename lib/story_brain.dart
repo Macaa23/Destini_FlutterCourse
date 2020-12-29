@@ -1,6 +1,7 @@
 import 'story.dart';
 
 class StoryBrain {
+  int storyNumber = 0;
   List<Story> _storyData = [
     Story(
         storyTitle:
@@ -43,6 +44,20 @@ class StoryBrain {
 
   String getChoice2() {
     return _storyData[0].choice2;
+  }
+
+  void nextStory(int choiceNumber) {
+    if (storyNumber > 2) restart();
+    if (choiceNumber == 1 && storyNumber == 0) storyNumber = 2;
+    if (choiceNumber == 2 && storyNumber == 0) storyNumber = 1;
+    if (choiceNumber == 1 && storyNumber == 1) storyNumber = 2;
+    if (choiceNumber == 2 && storyNumber == 1) storyNumber = 3;
+    if (choiceNumber == 1 && storyNumber == 2) storyNumber = 5;
+    if (choiceNumber == 2 && storyNumber == 2) storyNumber = 4;
+  }
+
+  void restart() {
+    storyNumber = 0;
   }
 }
 
